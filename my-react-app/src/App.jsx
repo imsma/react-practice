@@ -1,5 +1,11 @@
+import MyComponent from "./MyComponent";
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <MyComponent />
+    </>
+  );
 }
 
 export default App;
