@@ -3,7 +3,7 @@
 // and returns the cached result when the same inputs occur again.
 // This can help in optimizing the performance of the application.
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 function App() {
   // in following code expensiveFunction will be excecuted
@@ -17,7 +17,11 @@ function App() {
   const [number, setNummber] = useState(0);
   const [dark, setDark] = useState(false);
 
-  const calculation = expensiveFunction(number);
+  const calculation = useMemo(() => {
+    return expensiveFunction(number);
+  }, [number]);
+
+  // const calculation = expensiveFunction(number);
   const cssStyle = {
     backgroundColor: dark ? "black" : "white",
     color: dark ? "white" : "black",
