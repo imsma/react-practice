@@ -3,17 +3,24 @@ import { useReducer } from "react";
 const initialState = { count: 0 };
 
 const reducer = (state, action) => {
-  return { count: state.count + 1 };
+  switch (action.type) {
+    case "INCREASE_COUNT":
+      return { count: state.count + 1 };
+    case "DECREASE_COUNT":
+      return { count: state.count - 1 };
+  }
 };
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const increaseCount = () => {
-    dispatch();
+    dispatch({ type: "INCREASE_COUNT" });
   };
 
-  const decreaseCount = () => {};
+  const decreaseCount = () => {
+    dispatch({ type: "DECREASE_COUNT" });
+  };
 
   return (
     <>
