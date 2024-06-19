@@ -4,7 +4,7 @@ function PrintTable({ calculateTable }) {
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
-    // console.log("calculating Table");
+    console.log("calculating Table");
     setRows(calculateTable());
   }, [calculateTable]);
 

@@ -2,7 +2,7 @@
 // The useCallback hook is a hook that will return a memoized version of the callback function
 // that only changes if one of the dependencies has changed.
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import PrintTable from "./PrintTable";
 
 function App() {
@@ -14,8 +14,7 @@ function App() {
     color: darkTheme ? "#FFF" : "#333",
   };
 
-  const calculateTable = () => {
-    console.log("calculating Table");
+  const calculateTable = useCallback(() => {
     return [
       number * 1,
       number,
@@ -28,7 +27,7 @@ function App() {
       number * 9,
       number * 10,
     ];
-  };
+  }, [number]);
 
   return (
     <>
