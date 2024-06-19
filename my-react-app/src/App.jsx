@@ -23,16 +23,22 @@ import axios from "axios";
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    axios.get("https://dummyjson.com/products").then((res) => {
-      setProducts(res.data.products);
-      console.log(products);
-    });
+    axios
+      .get("https://dummyjson.com/products1")
+      .then((res) => {
+        setProducts(res.data.products);
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
   }, []);
 
   return (
     <>
+      <h3>{error && error}</h3>
       {products.map((product, index) => {
         return <h3 key={index}>{`${product.title} - ${product.price}`}</h3>;
       })}
