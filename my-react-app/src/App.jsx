@@ -3,6 +3,9 @@
 // It is used to make XMLHttpRequests from the browser
 // that also supports the ES6 Promise API.
 
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 // Benefits of Axios:
 // 1. Make XMLHttpRequests from the browser
 // 2. Supports the Promise API
@@ -19,7 +22,22 @@
 // https://dummyjson.com/docs/products#products-all
 
 function App() {
-  return <></>;
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios.get("https://dummyjson.com/products").then((res) => {
+      setProducts(res.data.products);
+      console.log(products);
+    });
+  }, []);
+
+  return (
+    <>
+      {products.map((product, index) => {
+        return <h3 key={index}>{`${product.title} - ${product.price}`}</h3>;
+      })}
+    </>
+  );
 }
 
 export default App;
