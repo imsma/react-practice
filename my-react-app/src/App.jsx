@@ -4,7 +4,7 @@
 // that also supports the ES6 Promise API.
 
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "./util/axios";
 
 // Benefits of Axios:
 // 1. Make XMLHttpRequests from the browser
@@ -26,15 +26,17 @@ function App() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    axios
-      .get("https://dummyjson.com/products1")
-      .then((res) => {
-        setProducts(res.data.products);
-      })
-      .catch((error) => {
-        setError(error.message);
-      });
+    getProducts();
   }, []);
+
+  async function getProducts() {
+    try {
+      const response = await axios.get("/products");
+      setProducts(response.data.products);
+    } catch (error) {
+      setError(error.message);
+    }
+  }
 
   return (
     <>
