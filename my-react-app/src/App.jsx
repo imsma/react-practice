@@ -14,20 +14,24 @@ function App() {
     color: darkTheme ? "#FFF" : "#333",
   };
 
-  const calculateTable = useCallback(() => {
-    return [
-      number * 1,
-      number,
-      number * 3,
-      number * 4,
-      number * 5,
-      number * 6,
-      number * 7,
-      number * 8,
-      number * 9,
-      number * 10,
-    ];
-  }, [number]);
+  const calculateTable = useCallback(
+    (val) => {
+      const newNumber = number + val;
+      return [
+        newNumber * 1,
+        newNumber * 2,
+        newNumber * 3,
+        newNumber * 4,
+        newNumber * 5,
+        newNumber * 6,
+        newNumber * 7,
+        newNumber * 8,
+        newNumber * 9,
+        newNumber * 10,
+      ];
+    },
+    [number]
+  );
 
   return (
     <>
